@@ -5,5 +5,5 @@ export default interface IUserService {
 
     findAll(start: number, count: number): Promise<Array<User>>;
 
-    create(user: User): Promise<void>;
+    create(user: User): Promise<string>;
 }

@@ -1,23 +1,32 @@
-import {injectable} from "inversify";
+import {inject, injectable} from "inversify";
 
-import IUserService from '../../interfaces/user/IUserService';
+import IUserService from '../../interfaces/services/IUserService';
 import User from "../../models/User";
+import TYPE from "../../constants/TYPES";
+import IUserDAO from "../../interfaces/dataaccess/IUserDAO";
 
-export const user1 = new User('1', 'John');
-export const user2 = new User('2', 'Kate');
+type UserDaoType = IUserDAO<User, string>;
+
+
 
 @injectable()
 export default class DummyUserService implements IUserService {
+
+    private readonly _userDAO: UserDaoType;
+
+    public constructor(@inject(TYPE.UserDAO) _userDAO: UserDaoType) {
+        this._userDAO = _userDAO;
+    }
+
     findById(id: string): Promise<User> {
-        return Promise.resolve(user1);
+        return this._userDAO.findById(id);
     }
 
     findAll(start: number, count: number): Promise<Array<User>> {
-        // return Promise.reject(new Error('mistakes were made'))
-        return Promise.resolve([user1, user2]);
+        return this._userDAO.findAll(start,count);
     }
 
-    create(user: User): Promise<void> {
-        return Promise.resolve();
+    create(user: User): Promise<string> {
+        return this._userDAO.create(user);
     }
 }

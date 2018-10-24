@@ -4,7 +4,7 @@ import 'reflect-metadata';
 
 import chai from 'chai';
 
-import {user1, user2} from "../../src/services/user/DummyUserService";
+import {user1, user2} from "../../src/dataaccess/DummyUserDaoImpl";
 import server from "../../src/server";
 
 const expect = chai.expect;

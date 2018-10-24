@@ -13,7 +13,7 @@ import {
 } from "inversify-express-utils";
 import {inject} from "inversify";
 import User from "../models/User";
-import IUserService from "../interfaces/user/IUserService";
+import IUserService from "../interfaces/services/IUserService";
 import TYPE from '../constants/TYPES';
 
 @controller("/users")
@@ -51,7 +51,6 @@ export class UserController implements interfaces.Controller {
             .catch((err: Error) => {
                 res.status(400).json({error: err.message});
             });
-
 
     }
 }
