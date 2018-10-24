@@ -21,4 +21,8 @@ export default class DummyUserDaoImpl implements IUserDAO<User, string> {
         return Promise.resolve(user1);
     }
 
+    setNewUserPassword(userID: string, newPassword: string): void {
+        // code for changing the password
+    }
+
 }

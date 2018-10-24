@@ -7,8 +7,6 @@ import IUserDAO from "../../interfaces/dataaccess/IUserDAO";
 
 type UserDaoType = IUserDAO<User, string>;
 
-
-
 @injectable()
 export default class DummyUserService implements IUserService {
 
